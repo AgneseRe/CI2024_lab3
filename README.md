@@ -1,7 +1,7 @@
 # N-Puzzle solver
 The N-Puzzle is a sliding puzzle consisting of *n* numbered tiles and an empty space, that challenges the player to move pieces along certain routes in order to establish a specific end-configuration (usually in ascending numerical order). 8-puzzle consists of 8 tiles in a 3x3 frame, [15-puzzle](https://en.wikipedia.org/wiki/15_puzzle) consists of 15 tiles in a 4x4 frame, 24-puzzle consists of 24 tiles in a 5x5 frame etc.
 
-### This program solves n-puzzle using A* algorithm with various heuristics and Problem Decomposition.
+## This program solves n-puzzle using A* algorithm with various heuristics and Problem Decomposition with Goal Tree.
 
 ## Heuristics
 - `Hamming Distance / Misplaced Tiles`: the number of tiles that are not in the correct position. This heuristic is the simplest, but also the slowest. A huge amount of states will be explored in order to reach the goal state;
