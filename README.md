@@ -1,15 +1,15 @@
 # N-Puzzle solver
-The N-Puzzle is a sliding puzzle consisting of n numbered tiles and an empty space that challenges the player to move pieces along certain routes in order to establish a specific end-configuration (usually in ascending numerical order). 8-puzzle consists of 8 tiles in a 3x3 frame, [15-puzzle](https://en.wikipedia.org/wiki/15_puzzle) has 15 tiles in a 4x4 frame etc.
+The N-Puzzle is a sliding puzzle consisting of *n* numbered tiles and an empty space, that challenges the player to move pieces along certain routes in order to establish a specific end-configuration (usually in ascending numerical order). 8-puzzle consists of 8 tiles in a 3x3 frame, [15-puzzle](https://en.wikipedia.org/wiki/15_puzzle) consists of 15 tiles in a 4x4 frame, 24-puzzle consists of 24 tiles in a 5x5 frame etc.
 
-## This program solves n-puzzle using A* algorithm with various heuristics.
+## This program solves n-puzzle problem using A* algorithm with various heuristics.
 
 ## Heuristics
 - `Hamming Distance / Misplaced Tiles`: the number of tiles that are not in the correct position. This heuristic is the simplest, but also the slowest. A huge amount of states will be explored in order to reach the goal state;
 - `Manhattan Distance / Taxicab Geometry`: the Manhattan distance of a tile is the distance or the number of tiles away it is from its target position. It is calculated as the sum of the absolute differences between its current row and column and its target row and column. For a certain puzzle configuration, the Manhattan distance is the sum of the Manhattan distances of all the tiles, except the blank tile;
-- `Linear Conflict + Manhattan Distance / Taxicab Geometry`: two tiles *tile_a* and *tile_b* are in linear conflict if they are both in their correct row or column, but they are reversed relative to their goal positions. They are in the same row or column, their target positions are in the same row or column and the target position of one of the tiles is occupied by the other tile in that row or column. The heuristic value is Manhattan Distance + 2 * number of linear conflicts.
+- `Linear Conflict + Manhattan Distance / Taxicab Geometry`: two tiles *tile_a* and *tile_b* are in linear conflict if they are both in their correct row or column, but they are reversed relative to their goal positions. They are in the same row or column, their target positions are in the same row or column and the target position of one of the tiles is occupied by the other tile in that row or column. The heuristic value is the Manhattan Distance plus two times the number of linear conflicts (`manhattan_distance + 2 * n_linear_conflicts`).
 
 ## 8-Puzzle Example
-Starting from a given initial configuration, obtained by randomly moving the tiles for 1_000 steps, a path like the following is obtained. The implemented algorithm is particularly efficient. It obtains the solution in just 23 moves in a particularly short time, in the order of one second. The first state in the path is the *initial_state*. The last state is the *goal_state*.
+Starting from a given initial configuration, obtained by randomly moving the tiles for `RANDOMIZE_STEPS` steps, a path like the following is obtained. The implemented algorithm is particularly efficient. It obtains the solution in just 23 moves in a particularly short time, in the order of one second. The first state in the path is the *initial_state*. The last state is the *goal_state*.
 > Given the small size of the path required to solve the 8-puzzle problem, it was decided to report this case in the README. The 4x4 puzzle has instead been resolved in the code.
 ```python
 [
@@ -90,7 +90,7 @@ Solve 8-puzzle in 23 moves
 ```
 
 ## Results
-The following graphs show the evolution of the **heuristic function**, in term of `h_distance`, used in the A* algorithm during the search process to solve the n-puzzle problem. The x-axis represents the number of steps taken by the algorithm, while the y-axis represents the value of the heuristic function at each step. It is possible to observe that the heuristic function fluctuates as the algorithm explores different states. Initially, the heuristic value tends to be higher as the algorithm is far from the goal. Then it tends to decrease, reflecting the reduced distance to the goal state. It is equal to 0 after 306 actions.
+The following graphs show the evolution of the **heuristic function**, in term of `h_distance`, used in the A* algorithm during the search process to solve the n-puzzle problem. The x-axis represents the number of steps taken by the algorithm, while the y-axis represents the value of the heuristic function at each step. It is possible to observe that the heuristic function fluctuates as the algorithm explores different states. Initially, the heuristic value tends to be higher as the algorithm is far from the goal. Then it tends to decrease, reflecting the reduced distance to the goal state. In the analyzed case, it is equal to 0 after 306 steps.
 
 ![Heuristic function 8-puzzle](plots/8-puzzle_heuristic.png)
 
